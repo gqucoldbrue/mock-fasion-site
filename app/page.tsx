@@ -1,30 +1,46 @@
 'use client';
-import React from 'react';
-import { m } from 'motion';  // Notice the change here - we import 'm' instead of 'motion'
+import { animate, spring, stagger } from 'motion';
+import { createMotionElement } from '@motionone/dom';
 import Image from 'next/image';
 
+// Create motion components - add this right after imports
+const createMotion = (element: keyof HTMLElementTagNameMap) => {
+  return createMotionElement(element, {
+    transforms: ['translateX', 'translateY', 'scale', 'rotate'],
+    properties: ['opacity']
+  });
+};
+
+// Create the motion components we'll use
+const MotionDiv = createMotion('div');
+const MotionH1 = createMotion('h1');
+const MotionH2 = createMotion('h2');
+const MotionH3 = createMotion('h3');
+const MotionP = createMotion('p');
+
 export default function LandingPage() {
-    // Animation configurations remain similar but now use the new import
+    // Update the animation configurations to work with the new system
     const containerAnimation = {
-        hidden: { opacity: 0, x: 100 },
-        visible: { 
+        initial: { opacity: 0, x: 100 },
+        animate: { 
             opacity: 1, 
             x: 0,
             transition: {
                 duration: 0.8,
-                when: "beforeChildren",
-                staggerChildren: 0.1
+                ease: spring(),
+                delay: stagger(0.1)
             }
         }
     };
 
     const textAnimation = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { 
+        initial: { opacity: 0, y: 20 },
+        animate: { 
             opacity: 1, 
             y: 0,
             transition: {
-                duration: 0.5
+                duration: 0.5,
+                ease: spring()
             }
         }
     };
@@ -46,42 +62,69 @@ export default function LandingPage() {
             {/* Semi-transparent overlay */}
             <div className="absolute inset-0 bg-black/30" />
             
-            {/* Content Container - Now using 'm' instead of 'motion' */}
-            <m.div
-                variants={containerAnimation}
-                initial="hidden"
-                animate="visible"
+            {/* Content Container - Now using MotionDiv instead of m.div */}
+            <MotionDiv
+                initial={containerAnimation.initial}
+                animate={containerAnimation.animate}
                 className="absolute inset-y-0 right-0 w-1/2 flex flex-col justify-between p-12 text-white z-10"
             >
-                <m.div variants={textAnimation} className="space-y-6">
-                    <m.div variants={textAnimation} className="text-sm tracking-wider">
+                <MotionDiv 
+                    initial={textAnimation.initial}
+                    animate={textAnimation.animate}
+                    className="space-y-6"
+                >
+                    <MotionDiv 
+                        initial={textAnimation.initial}
+                        animate={textAnimation.animate}
+                        className="text-sm tracking-wider"
+                    >
                         ISSUE 42 • OCTOBER 2023
-                    </m.div>
+                    </MotionDiv>
                     
-                    <m.h1 variants={textAnimation} className="text-6xl font-bold">
+                    <MotionH1 
+                        initial={textAnimation.initial}
+                        animate={textAnimation.animate}
+                        className="text-6xl font-bold"
+                    >
                         <span className="text-yellow-400">LE</span> MAGAZINE
-                    </m.h1>
+                    </MotionH1>
                     
                     <div className="space-y-4">
-                        <m.h2 variants={textAnimation} className="text-3xl font-light">
+                        <MotionH2 
+                            initial={textAnimation.initial}
+                            animate={textAnimation.animate}
+                            className="text-3xl font-light"
+                        >
                             OCTOBER EDITION
-                        </m.h2>
-                        <m.h3 variants={textAnimation} className="text-4xl font-bold">
+                        </MotionH2>
+                        <MotionH3 
+                            initial={textAnimation.initial}
+                            animate={textAnimation.animate}
+                            className="text-4xl font-bold"
+                        >
                             YOUNG PROFESSIONAL LIFESTYLE
-                        </m.h3>
+                        </MotionH3>
                     </div>
                     
-                    <m.p variants={textAnimation} className="text-lg font-light max-w-md">
+                    <MotionP 
+                        initial={textAnimation.initial}
+                        animate={textAnimation.animate}
+                        className="text-lg font-light max-w-md"
+                    >
                         Discover the latest trends, career advice, and lifestyle tips
                         for the modern young professional. From fashion to finance,
                         we've got you covered.
-                    </m.p>
-                </m.div>
+                    </MotionP>
+                </MotionDiv>
 
-                <m.div variants={textAnimation} className="space-y-8">
-                    {/* Footer content remains the same, just change motion. to m. */}
-                </m.div>
-            </m.div>
+                <MotionDiv 
+                    initial={textAnimation.initial}
+                    animate={textAnimation.animate}
+                    className="space-y-8"
+                >
+                    {/* Footer content remains the same */}
+                </MotionDiv>
+            </MotionDiv>
         </div>
     );
 }

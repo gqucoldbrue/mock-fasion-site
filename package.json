@@ -12,8 +12,10 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@motionone/dom": "^10.18.0",
     "motion": "^11.13.1",
     "next": "^15.0.3",
+    "npm": "^10.9.1",
     "react": "^19.0.0-rc.1",
     "react-dom": "^19.0.0-rc.1"
   },
