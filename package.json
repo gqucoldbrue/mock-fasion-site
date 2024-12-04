@@ -12,7 +12,6 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@motionone/dom": "^10.18.0",
     "motion": "^11.13.1",
     "next": "^15.0.3",
     "npm": "^10.9.1",
