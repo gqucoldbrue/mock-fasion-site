@@ -13,18 +13,18 @@ export default function LandingPage() {
             />
             <div className="absolute inset-0 bg-black/30" />
             
-            <header className="absolute top-0 w-full flex justify-between p-8 text-white text-sm tracking-[0.2em]">
+            <header className="absolute top-0 w-full flex justify-between p-8 text-white text-sm tracking-[0.2em] z-10">
                 <span>ISSUE 42 • OCTOBER 2023</span>
                 <span>WWW.LEMAGAZINE.COM</span>
             </header>
 
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
                 <h1 className="text-8xl font-bold font-['Playfair_Display']">
                     <span style={{ color: '#ffd700' }}>LE</span> <span className="text-white">MAGAZINE</span>
                 </h1>
             </div>
 
-            <div className="absolute top-0 right-0 w-1/2 h-full flex flex-col justify-center p-16">
+            <div className="absolute top-0 right-0 w-1/2 h-full flex flex-col justify-center p-16 z-10">
                 <div className="space-y-8 text-white">
                     <div className="space-y-6">
                         <h2 className="text-3xl font-light tracking-wider">OCTOBER EDITION</h2>
